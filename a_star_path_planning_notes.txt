@@ -1,0 +1,39 @@
+This is a notes file for the A* algorithm that will be used to plan paths
+
+How does A* work:
+-it's a brute force approach that will basically look at all of the paths
+available
+-look at the current node and go to the closest neighbor that will bring 
+you to the goal
+    -Have a cost function to assess where to go
+
+
+What parts make up the A* algorithm:
+-nodes: accessible states/positions
+
+-edges: how to get from 1 node to another; have a cost
+
+-open set: list of the paths available to take from the start positions
+    -in the open set, there is the last neighbor nodes of the last node you 
+    visited and the total cost to get to that node from the start
+
+    -after checking the neighbors of the node and their cost,
+    the current node is removed from the set, the neighbors are added
+    instead alongside their cost
+
+-cost function: to evaluate which neighbor is the best to go to
+    cost(x) = instant_cost(x) + absolute_cost(x)
+
+    -instant_cost(x): tells you the cost to get from previous node to neighbor
+    
+    -absolute_cost(x): tells you the cost to get from the neighbor node
+    to the end point: this is really an estimate but you can use
+    euclidean distance for example to guess.
+        -ignores borders; sometimes not useful esp when in a maze
+
+    -when looking through the open set to decide which node to investigate,
+    you look at the cost to continue traveling that node from the start
+        -always investigate the node with the lowest cost in the open set
+
+-track history for getting to each node in the open set
+

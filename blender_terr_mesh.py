@@ -25,13 +25,13 @@ latitude_reader = list(csv.reader(open(latitude_file), delimiter=','))
 longitude_reader = list(csv.reader(open(longitude_file), delimiter=','))
 
 # creating vertices/points on mesh
-x_init = float(longitude_reader[0][0])
+# x_init = float(longitude_reader[0][0])
 #x_scale = 100
-x_max = float(max(list(map(max, longitude_reader))))
+# x_max = float(max(list(map(max, longitude_reader))))
 
-y_init = float(latitude_reader[0][0])
+# y_init = float(latitude_reader[0][0])
 #y_scale = 10000
-y_max = float(max(list(map(max, latitude_reader))))
+# y_max = float(max(list(map(max, latitude_reader))))
 
 #crater is literally at the south pole
 #have to plot using polar coordinate system except angles are different in gps
