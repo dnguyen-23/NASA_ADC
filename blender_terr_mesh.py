@@ -25,13 +25,13 @@ latitude_reader = list(csv.reader(open(latitude_file), delimiter=','))
 longitude_reader = list(csv.reader(open(longitude_file), delimiter=','))
 
 # creating vertices/points on mesh
-# x_init = float(longitude_reader[0][0])
+x_init = float(longitude_reader[0][0])
 #x_scale = 100
-# x_max = float(max(list(map(max, longitude_reader))))
+x_max = float(max(list(map(max, longitude_reader))))
 
-# y_init = float(latitude_reader[0][0])
+y_init = float(latitude_reader[0][0])
 #y_scale = 10000
-# y_max = float(max(list(map(max, latitude_reader))))
+y_max = float(max(list(map(max, latitude_reader))))
 
 #crater is literally at the south pole
 #have to plot using polar coordinate system except angles are different in gps
@@ -47,13 +47,9 @@ for rowIdx, uselessRowElem in enumerate(height_reader[0: dim]):
         long = float(longitude_reader[rowIdx][colIdx])
         lat = float(latitude_reader[rowIdx][colIdx])
         z = float(height_reader[rowIdx][colIdx])
-    #        vert = ((float(x) + x_init), (float(y) + 88) * 40, float(z) / 10)
-    #        vert = (rowIdx, colIdx, float(z) / 10)
-        latitudeAngle = (lat + 90) * math.pi / 180
-        hypotenuseDistance = 1.7374 * 10**6 * 2 * math.sin(latitudeAngle) / 2 / math.pi
-        coordAngle = (90 - long) * math.pi / 180
-        x = hypotenuseDistance * math.cos(coordAngle) 
-        y = hypotenuseDistance * math.sin(coordAngle)
+        radius = 1.7374 * 10**6
+        x = math.cos(lat * math.pi / 180) * math.cos(long * math.pi / 180) * radius
+        y = math.cos(lat * math.pi / 180) * math.sin(long * math.pi / 180) * radius
         
         curVertIdx = colIdx + 1277 * rowIdx
         if ((rowIdx != dim - 1) and (colIdx != dim - 1)): #order of vertices matters; vertices have to go in order and cannot skip diagonally
